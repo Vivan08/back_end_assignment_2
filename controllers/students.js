@@ -18,8 +18,8 @@ const createUser = (req,res) => {
     let {name, age, id} = req.body
 
     if(!name || !age || !id){
-        return res.status(404).json({
-            message : "data has not found",
+        return res.status(400).json({
+            message : "data must have name, age and id",
             success : "False"
         })
     }
@@ -31,7 +31,7 @@ const createUser = (req,res) => {
 
     fs.writeFileSync("./data/students.json", JSON.stringify(data, null, 3))
 
-    res.status(200).json({
+    res.status(201).json({
         message : "data created successfully ...",
         success : "True",
         data : data
